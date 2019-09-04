@@ -5,25 +5,27 @@
 
 <div class="container">
 
-   <div class="row justify-content-center">
+  <div class="row justify-content-center">
 
-       <div class="col-md-8">
+    <div class="col-md-8">
 
-           @foreach ($posts as $post)
+      @foreach ($posts as $post)
 
-               <div class="card mt-4">
+        <div class="card mt-4">
 
-                   <img class="card-img-top" src="{{$post->image_path}}" alt="Card image cap">
+          <img class="card-img-top" src="{{$post->image_path}}" alt="Card image cap">
+          <div class="row">
+            <div class="card-body">{{$post->description}}</div>
+            <i class="fas fa-thumbs-up"></i>
+          </div>
 
-                   <div class="card-body">{{$post->description}}</div>
+        </div>   
 
-               </div>   
+      @endforeach
 
-           @endforeach
+    </div>
 
-       </div>
-
-   </div>
+  </div>
 
 </div>
 
