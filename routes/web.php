@@ -21,6 +21,7 @@ Route::get('/home', 'HomeController@home');
 Route::get('/posts','PostsController@index');
 
 Route::get('/posts/create','PostsController@create');
+Route::get('/posts/addLike','PostsController@addLike');
 
 Route::post('/posts','PostsController@store');
 

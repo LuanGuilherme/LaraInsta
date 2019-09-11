@@ -24,7 +24,6 @@ class PostsController extends Controller
    public function index(){
 
        $posts = Post::all();
-
        return view('posts.list')->with('posts', $posts);
 
    }
@@ -45,22 +44,33 @@ class PostsController extends Controller
 
        ]);      
 
-       $post = Post::create([
+           $post = Post::create([
 
-           'user_id' => auth()->id(),
+               'user_id' => auth()->id(),
 
-           'image_path' => request()->file('image_path')->store('posts', 'public'),
+               'image_path' => request()->file('image_path')->store('posts', 'public'),
 
-           'description' => request('description'),
+               'description' => request('description'),
 
-           'filter' => request('filter'),
+               'filter' => request('filter'),
 
-           'likes' => 0
+               'likes' => 0
 
-       ])->save();
+           ])->save();
 
 
        return redirect('home');
+
+   }
+
+   public function coment () {
+
+
+   }
+
+   public function addLike () {
+       Post::user();
+       return redirect('posts');
 
    }
 

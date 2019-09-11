@@ -40,7 +40,10 @@ class CreatePostsTable extends Migration
 
            $table->integer('likes')->default(0);
 
+           $table->text('coment')->nullable();
+
            $table->timestamps();
+
 
        });
 

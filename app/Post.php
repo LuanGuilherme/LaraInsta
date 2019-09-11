@@ -29,4 +29,8 @@ class Post extends Model
 
    }
 
+   public function like ($id) {
+   		$post = Post::table('posts')->where('id', $id)->increment('likes', 1);
+   }
+
 }
