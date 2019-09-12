@@ -1,22 +1,24 @@
-@extends('layouts.app')
+  @extends('layouts.app')
 
 
-@section('content')
+  @section('content')
 
-<div class="container">
+  <div class="container">
 
-  <div class="row justify-content-center">
+    <div class="row justify-content-center">
 
-    <div class="col-md-8">
+      <div class="col-md-8">
 
-      @foreach ($posts as $post)
+        @foreach ($posts as $post)
 
         <div class="card mt-4">
 
           <img class="card-img-top" src="{{$post->image_path}}" alt="Card image cap">
-          <div class="row">
-            <div class="card-body col-md-10">{{$post->description}}</div>
-            <div class="col-md-2">
+
+          <div class="card-body row col-md-12">{{$post->description}}
+
+            <div class="col-md-offset-8">
+
               <form method="POST" enctype="multipart/form-data" action="/posts/addLike">
 
 
@@ -41,26 +43,31 @@
 
               </form>
 
-
               <div>{{$post->likes}}</div>
 
-               <form method="POST" action="/posts/coment">
+            </div>
+
+            <div class="row">
+
+             <form method="POST" action="/posts/coment">
 
 
-                @csrf
+                  @csrf
 
 
-                <input type="text" name="coment" placeholder="Comente..."></input>
-                <input type="hidden" value="{{$post->id}}" name="id"></input>
+                  <input type="text" name="coment" placeholder="Comente..."></input>
+                  <input type="hidden" value="{{$post->id}}" name="id"></input>
 
               </form>
-
-              <div>{{$post->coments}}</div>
-
             </div>
+
           </div>
 
-        </div>   
+          <div class="row">{{$post->coments}}</div>
+
+        </div>
+
+      </div>   
 
       @endforeach
 
