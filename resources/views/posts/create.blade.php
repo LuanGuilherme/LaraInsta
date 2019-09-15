@@ -31,7 +31,7 @@
 
          
 
-               <button type="submit" class="btn btn-success form-control">Postar</button>
+               <button type="submit" class="col-md-12 btn btn-success">Postar</button>
 
            </form>
 

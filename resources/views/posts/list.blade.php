@@ -1,73 +1,70 @@
-  @extends('layouts.app')
+@extends('layouts.app')
 
 
-  @section('content')
+@section('content')
 
-  <div class="container">
+<div class="container">
 
-    <div class="row justify-content-center">
+  <div class="row justify-content-center">
 
-      <div class="col-md-8">
+    <div class="col-md-8">
 
-        @foreach ($posts as $post)
+      @foreach ($posts as $post)
 
         <div class="card mt-4">
 
           <img class="card-img-top" src="{{$post->image_path}}" alt="Card image cap">
 
-          <div class="card-body row col-md-12">{{$post->description}}
+          <div class="card-body col-md-12">
 
-            <div class="col-md-offset-8">
+            <div class="row"> 
 
-              <form method="POST" enctype="multipart/form-data" action="/posts/addLike">
+              {{$post->description}}
 
+              <div class="offset-md-8 form-inline">
 
-                @csrf
-
-                <input type="hidden" value="{{$post->id}}" name="id"></input>
-                <button type="submit">Curtir</button>
-
-
-              </form>
-
-
-
-              <form method="POST" action="/posts/removeLike">
-
-
-                @csrf
-
-
-                <button type="submit">Descurtir</button>
-                <input type="hidden" value="{{$post->id}}" name="id"></input>
-
-              </form>
-
-              <div>{{$post->likes}}</div>
-
-            </div>
-
-            <div class="row">
-
-             <form method="POST" action="/posts/coment">
-
+                <form method="POST" enctype="multipart/form-data" action="/posts/addLike">
 
                   @csrf
 
-
-                  <input type="text" name="coment" placeholder="Comente..."></input>
                   <input type="hidden" value="{{$post->id}}" name="id"></input>
+                  <button class="btn btn-primary"><i class="far fa-thumbs-up"></i> Like</button>
+
+                </form>
+
+                <form method="POST" action="/posts/removeLike/{{$post->likes}}">
+
+                  @csrf
+
+                  <input type="hidden" value="{{$post->id}}" name="id"></input>
+                  <button class="btn btn-danger"><i class="far fa-thumbs-down"></i> Dislike</button>
+
+                </form>
+
+                <div id="likes" class="col-md-2">{{$post->likes}}</div>
+
+              </div>
+
+            </div>
+
+            <div class="row" style="margin-top: 2%">
+
+              <form method="POST" class="col-md-12" action="/posts/coment/{{$post->coments}}">
+
+                @csrf
+
+                <input type="text" class="col-md-12" name="coment" placeholder="Comente..."></input>
+                <input type="hidden" value="{{$post->id}}" name="id"></input>
 
               </form>
+
             </div>
 
           </div>
 
-          <div class="row">{{$post->coments}}</div>
+          <div class="col-md-12"><p>{!!$post->coments!!}</p></div>
 
-        </div>
-
-      </div>   
+        </div>   
 
       @endforeach
 
